@@ -3,11 +3,14 @@ import sys
 import pygame
 import moderngl
 
+WIDTH=1024
+HEIGHT=1024
+
 
 pygame.init()
 
-screen = pygame.display.set_mode((800, 600), pygame.OPENGL | pygame.DOUBLEBUF)
-display = pygame.Surface((800, 600))
+screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.OPENGL | pygame.DOUBLEBUF)
+display = pygame.Surface((WIDTH, HEIGHT))
 ctx = moderngl.create_context()
 
 clock = pygame.time.Clock()
@@ -46,7 +49,7 @@ in vec2 uvs;
 out vec4 f_color;
 
 void main() {
-    vec2 sample_pos = vec2(uvs.x + sin(uvs.y * 10 + bob * 0.5) * 0.01, uvs.y);
+    vec2 sample_pos = vec2(uvs.x + sin(uvs.y * 20 + bob * 0.5) * 0.005, uvs.y);
     f_color = vec4(texture(tex, sample_pos).rgb, 1.0);
 }
 '''
@@ -66,7 +69,7 @@ t = 0.0
 
 while True:
     display.fill((0, 0, 0))
-    display.blit(img, pygame.mouse.get_pos())
+    display.blit(img, (0, 0))
 
     t += 1
 
